@@ -50,20 +50,48 @@ function search_by_name() {
 }
 
 
+function insertSearchEventToTheTimeLine(search_type){
+    let now = new Date(Date.now());
+    let formatted = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+
+    $.ajax({
+        url: "http://localhost:5000/timeline/insert",
+        type: "put",
+        data: {
+            text: ` Client has searched for ${search_type}`,
+            time: `at time ${formatted}`,
+            hits: 1
+        },
+        success: function(r){
+            console.log(r)
+        }
+    })
+}
+
+
 function setup() {
     $("#poke_type").change(() => {
         poke_type = $("#poke_type option:selected").val();
-        display_by_type($("#poke_type option:selected").val())
+        console.log(poke_type);
+        display_by_type($("#poke_type option:selected").val());
+        value = "Poke type: " + poke_type;
+        insertSearchEventToTheTimeLine(value)
     })
 
     $("#poke_habitat").change(() => {
         poke_habitat = $("#poke_habitat option:selected").val();
-        display_by_habitat($("#poke_habitat option:selected").val())
+        console.log(poke_habitat);
+        display_by_habitat($("#poke_habitat option:selected").val());
+        value = "Poke habitat: " + poke_habitat;
+        insertSearchEventToTheTimeLine(value)
     })
 
     $("#find_pokemon_by_name").click(search_by_name)
 
 }
+
+
+
 
 
 $(document).ready(setup)
