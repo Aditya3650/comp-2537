@@ -72,17 +72,21 @@ function insertSearchEventToTheTimeLine(search_type){
 function setup() {
     $("#poke_type").change(() => {
         poke_type = $("#poke_type option:selected").val();
+        poke_type_name = $("#poke_type option:selected").text();
         console.log(poke_type);
+        console.log(poke_type_name);
         display_by_type($("#poke_type option:selected").val());
-        value = "Poke type: " + poke_type;
+        value = poke_type_name + " type pokemon";
         insertSearchEventToTheTimeLine(value)
     })
 
     $("#poke_habitat").change(() => {
         poke_habitat = $("#poke_habitat option:selected").val();
+        poke_habitat_name = $("#poke_habitat option:selected").text();
         console.log(poke_habitat);
+        console.log(poke_habitat_name);
         display_by_habitat($("#poke_habitat option:selected").val());
-        value = "Poke habitat: " + poke_habitat;
+        value = poke_habitat_name + " type pokemon";
         insertSearchEventToTheTimeLine(value)
     })
 
