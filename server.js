@@ -101,6 +101,7 @@ app.get('/profile/:id', function (req, res) {
     const url = `https://pokeapi.co/api/v2/pokemon/${req.params.id}`
 
     data = ""
+    poke_price = Math.floor(Math.random() * 10) + 1;
 
     https.get(url, function (https_res) {
         https_res.on("data", function (chunk) {
@@ -119,6 +120,7 @@ app.get('/profile/:id', function (req, res) {
                 "specialAttack": data.stats[3]["base_stat"],
                 "specialDefense": data.stats[4]["base_stat"],
                 "speed": data.stats[5]["base_stat"],
+                "price": poke_price,
             })
         })
     })
